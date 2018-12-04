@@ -100,3 +100,34 @@ function drawOutlineText(ctx, colorOut, colorIn, size, text, destX, destY) {
     drawText(ctx, colorOut, size, text, destX, destY - 1); //上
     drawText(ctx, colorIn, size, text, destX, destY);      //上
 }
+
+/*
+    功能：
+        绘制自动换行的文字
+    参数：
+        color：颜色字符串
+        size：字体大小
+        text：要绘制的字符串
+        destX,destY：绘制的起点
+        maxW：最大宽度，超过后会自动换行
+ */
+function drawRectText(ctx, color, size, text, destX, destY, maxW) {
+    //计算
+    let lineWidth = 0;
+    let lastSubStrIndex = 0;
+    let lineHeight=size;
+    ctx.font = size + "px 微软雅黑";
+    ctx.fillStyle = color;
+    for (let i = 0; i < text.length; i++) {
+        lineWidth += ctx.measureText(text[i]).width;
+        if (lineWidth > maxW - destX) {//减去initX,防止边界出现的问题
+            ctx.fillText(text.substring(lastSubStrIndex, i), destX, destY);
+            destY += lineHeight;
+            lineWidth = 0;
+            lastSubStrIndex = i;
+        }
+        if (i === text.length - 1) {
+            ctx.fillText(text.substring(lastSubStrIndex, i + 1), destX, destY);
+        }
+    }
+}
