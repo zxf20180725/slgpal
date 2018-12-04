@@ -98,5 +98,5 @@ function drawOutlineText(ctx, colorOut, colorIn, size, text, destX, destY) {
     drawText(ctx, colorOut, size, text, destX + 1, destY); //右
     drawText(ctx, colorOut, size, text, destX, destY + 1); //下
     drawText(ctx, colorOut, size, text, destX, destY - 1); //上
-    drawText(ctx, colorIn, size, text, destX, destY); //上
+    drawText(ctx, colorIn, size, text, destX, destY);      //上
 }
