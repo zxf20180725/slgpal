@@ -5,19 +5,28 @@
     <title>仙剑奇侠传二战棋版</title>
 </head>
 <body>
-<canvas id="main" width="800" height="600">
+<canvas id="main" width="800" height="600" style="border: 1px solid red">
 
 </canvas>
 
-
+<script src="./js/draw_base.js"></script>
 <script>
     var canvas = document.getElementById("main");
     var ctx = canvas.getContext("2d");
     var timer = setInterval(mainLoop, 32);      //60FPS
+    var img = new Image();
+    img.src = "https://foxy-1252538440.cos.ap-guangzhou.myqcloud.com/TuerHeadImg/1.jpg";
 
     function mainLoop() {
         //逻辑更新
         //视图更新
+        drawFillRect(ctx,"#fff",0,0,800,600);
+        // drawSrcImg(ctx,img,0,0);
+        // drawImg(ctx,img,0,0,100,100,0,0,img.width,img.height);
+        // drawLine(ctx,"#6666",0,0,500,500);
+        // drawFillRect(ctx,"green",10,10,200,200);
+        drawText(ctx, "green", 60, "仙路尽头谁为峰，一见无始道成空！", 10, 200);
+        drawOutlineText(ctx,"green","#ff0000",40,"无始大帝",10,250);
     }
 
 </script>
