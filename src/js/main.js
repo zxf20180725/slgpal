@@ -6,19 +6,13 @@ let img = NewImage("https://foxy-1252538440.cos.ap-guangzhou.myqcloud.com/TuerHe
 let btn1 = NewImage("./images/btn_normal.png", 253, 87);
 let btn2 = NewImage("./images/btn_move.png", 253, 87);
 let btn3 = NewImage("./images/btn_down.png", 253, 87);
-let effect=NewImage("./images/effect1.png",2880,96);
+let effect = NewImage("./images/effect1.png", 2880, 96);
 canvas.onmousedown = mouseDown;
 canvas.onmouseup = mouseUp;
 canvas.onmousemove = mouseMove;
 
 let btn = Button(50, 50, btn1, btn2, btn3, callback);
-let aniManager=AnimationManager(ctx);
-
-aniManager.add(50,50,effect,70,false);
-aniManager.add(100,50,effect,70,false);
-aniManager.add(200,50,effect,70,false);
-aniManager.add(200,200,effect,70,true);
-aniManager.add(200,300,effect,70,false);
+let aniManager = AnimationManager(ctx);
 
 function callback() {
     alert("你点了劳资！");
@@ -43,12 +37,14 @@ function mainLoop() {
 function mouseMove() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
+    aniManager.add(mx, my, effect, 70, false);
     btn.getFocus(mx, my);
 }
 
 function mouseDown() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
+    aniManager.add(mx, my, effect, 70, false);
     btn.mouseDown(mx, my);
 }
 
