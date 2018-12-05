@@ -6,69 +6,11 @@
 </head>
 <body>
 <div style="text-align: center">
-    <canvas id="main" width="800" height="600" style="border: 1px solid red">
-
-    </canvas>
+    <canvas id="main" width="800" height="600" style="border: 1px solid red"></canvas>
 </div>
 <script src="./js/draw_base.js"></script>
 <script src="./js/gui.js"></script>
-<script>
-    let canvas = document.getElementById("main");
-    let ctx = canvas.getContext("2d");
-    let timer = setInterval(mainLoop, 32);      //60FPS
-
-    let img = new Image();
-    let btn1 = new Image(253, 87);
-    let btn2 = new Image();
-    let btn3 = new Image();
-    canvas.onmousedown = mouseDown;
-    canvas.onmouseup = mouseUp;
-    canvas.onmousemove = mouseMove;
-
-    img.src = "https://foxy-1252538440.cos.ap-guangzhou.myqcloud.com/TuerHeadImg/1.jpg";
-    btn1.src = "./images/btn_normal.png";
-    btn2.src = "./images/btn_move.png";
-    btn3.src = "./images/btn_down.png";
-    let btn = Button(50, 50, btn1, btn2, btn3, callback);
-
-    function callback() {
-        alert("你点了劳资！");
-    }
-
-    function mainLoop() {
-        //逻辑更新
-        //视图更新
-        drawFillRect(ctx, "#f6f6f6", 0, 0, 800, 600);
-        // drawSrcImg(ctx,img,0,0);
-        // drawImg(ctx,img,0,0,100,100,0,0,img.width,img.height);
-        // drawLine(ctx,"#6666",0,0,500,500);
-        // drawFillRect(ctx,"green",10,10,200,200);
-        drawText(ctx, "green", 60, "仙路尽头谁为峰，一见无始道成空！", 10, 200);
-        drawOutlineText(ctx, "green", "#ff0000", 40, "无始大帝", 10, 250);
-        drawRectText(ctx, "blue", 30, "仙路尽头谁为峰，一见无始道成空！", 10, 300, 300);
-        btn.draw(ctx);
-    }
-
-    function mouseMove() {
-        let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
-        let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-        btn.getFocus(mx, my);
-    }
-
-    function mouseDown() {
-        let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
-        let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-        console.log("down");
-        btn.mouseDown(mx, my);
-    }
-
-    function mouseUp() {
-        let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
-        let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-        console.log("up");
-        btn.mouseUp(mx, my);
-    }
-</script>
-
+<script src="./js/effects.js"></script>
+<script src="./js/main.js"></script>
 </body>
 </html>

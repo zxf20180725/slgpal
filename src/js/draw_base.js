@@ -1,5 +1,15 @@
 /*
     功能：
+        创建img对象
+*/
+function NewImage(src, w, h) {
+    var img = new Image(w, h);
+    img.src = src;
+    return img;
+}
+
+/*
+    功能：
         绘制一条宽度为1像素的线段
     参数：
         ctx：context设备上下文
@@ -115,7 +125,7 @@ function drawRectText(ctx, color, size, text, destX, destY, maxW) {
     //计算
     let lineWidth = 0;
     let lastSubStrIndex = 0;
-    let lineHeight=size;
+    let lineHeight = size;
     ctx.font = size + "px 微软雅黑";
     ctx.fillStyle = color;
     for (let i = 0; i < text.length; i++) {
