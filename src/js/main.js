@@ -27,9 +27,9 @@ function mainLoop() {
     // drawImg(ctx,img,0,0,100,100,0,0,img.width,img.height);
     // drawLine(ctx,"#6666",0,0,500,500);
     // drawFillRect(ctx,"green",10,10,200,200);
-    drawText(ctx, "green", 60, "仙路尽头谁为峰，一见无始道成空！", 10, 200);
-    drawOutlineText(ctx, "green", "#ff0000", 40, "无始大帝", 10, 250);
-    drawRectText(ctx, "blue", 30, "仙路尽头谁为峰，一见无始道成空！", 10, 300, 300);
+    // drawText(ctx, "green", 60, "仙路尽头谁为峰，一见无始道成空！", 10, 200);
+    // drawRectText(ctx, "blue", 30, "仙路尽头谁为峰，一见无始道成空！", 10, 300, 300);
+    drawOutlineText(ctx, "yellow", "red", 30, "狡猾的球球", 10, 250);
     aniManager.draw();
     btn.draw(ctx);
 }
@@ -37,14 +37,14 @@ function mainLoop() {
 function mouseMove() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-    aniManager.add(mx, my, effect, 70, false);
+    // aniManager.add(mx, my, effect, 3000, false);
     btn.getFocus(mx, my);
 }
 
 function mouseDown() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-    aniManager.add(mx, my, effect, 70, false);
+    aniManager.add(mx, my, effect, 2000, false);
     btn.mouseDown(mx, my);
 }
 

@@ -9,13 +9,14 @@
         x,y：绘制动画的中心点（不是左上角啦）
         img：序列帧图片（只支持一行的序列帧）
         frame：动画一共多少帧
-        speed：每帧播放速度（单位毫秒），以游戏主循环为32ms来计算
+        time：动画时长
         loop：循环动画（是否为循环动画）
 */
-function Animation(x, y, img, speed, loop) {
-    var frame=img.width/img.height;
+function Animation(x, y, img, time, loop) {
+    var frame = img.width / img.height;
     var dw = img.width / frame;     //单位宽度
     var dh = img.height;            //单位高度
+    var speed = parseInt(time / frame); //每帧播放速度（单位毫秒）
     return {
         x: x - dw / 2,      //绘图坐标
         y: y - dh / 2,
