@@ -3,14 +3,14 @@ let ctx = canvas.getContext("2d");
 let video = document.getElementById("video");
 let timer = setInterval(mainLoop, 32);      //60FPS
 
-let btn1 = NewImage("./images/btn1.png", 186, 34);
-let btn2 = NewImage("./images/btn2.png", 186, 34);
-let btn3 = NewImage("./images/btn3.png", 186, 34);
-let btn4 = NewImage("./images/btn4.png", 186, 34);
-let btn5 = NewImage("./images/btn5.png", 186, 34);
-let btn6 = NewImage("./images/btn6.png", 186, 34);
-let login = NewImage("./images/login.png", 640, 480);
-let effect = NewImage("./images/effect1.png", 2880, 96);
+let btn1 = NewImage("./image/btn1.png", 186, 34);
+let btn2 = NewImage("./image/btn2.png", 186, 34);
+let btn3 = NewImage("./image/btn3.png", 186, 34);
+let btn4 = NewImage("./image/btn4.png", 186, 34);
+let btn5 = NewImage("./image/btn5.png", 186, 34);
+let btn6 = NewImage("./image/btn6.png", 186, 34);
+let login = NewImage("./image/login.png", 640, 480);
+let effect = NewImage("./image/effect1.png", 2880, 96);
 
 let btnNewGame = Button(230, 270, btn1, btn2, btn2);
 let btnOldGame = Button(230, 320, btn3, btn4, btn4);
@@ -27,7 +27,7 @@ function mainLoop() {
     //逻辑更新
     aniManager.logic();
     //视图更新
-    drawFillRect(ctx, "#f6f6f6", 0, 0, 640, 480);
+    // drawFillRect(ctx, "#f6f6f6", 0, 0, 640, 480);
     drawSrcImg(ctx, video, 0, 0);
     aniManager.draw();
     drawSrcImg(ctx, login, 0, 0);
