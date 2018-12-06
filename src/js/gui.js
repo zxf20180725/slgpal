@@ -21,7 +21,7 @@ function Button(x, y, imgNormal, imgMove, imgDown, callback) {
         },
 
         //获得焦点
-        getFocus: function (x, y) {
+        mouseMove: function (x, y) {
             if (this.state === 2)
                 return;
             if (this.colli(x, y))

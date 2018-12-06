@@ -1,55 +1,62 @@
 let canvas = document.getElementById("main");
 let ctx = canvas.getContext("2d");
+let video = document.getElementById("video");
 let timer = setInterval(mainLoop, 32);      //60FPS
 
-let img = NewImage("https://foxy-1252538440.cos.ap-guangzhou.myqcloud.com/TuerHeadImg/1.jpg");
-let btn1 = NewImage("./images/btn_normal.png", 253, 87);
-let btn2 = NewImage("./images/btn_move.png", 253, 87);
-let btn3 = NewImage("./images/btn_down.png", 253, 87);
+let btn1 = NewImage("./images/btn1.png", 186, 34);
+let btn2 = NewImage("./images/btn2.png", 186, 34);
+let btn3 = NewImage("./images/btn3.png", 186, 34);
+let btn4 = NewImage("./images/btn4.png", 186, 34);
+let btn5 = NewImage("./images/btn5.png", 186, 34);
+let btn6 = NewImage("./images/btn6.png", 186, 34);
+let login = NewImage("./images/login.png", 640, 480);
 let effect = NewImage("./images/effect1.png", 2880, 96);
+
+let btnNewGame = Button(230, 270, btn1, btn2, btn2);
+let btnOldGame = Button(230, 320, btn3, btn4, btn4);
+let btnExitGame = Button(230, 370, btn5, btn6, btn6);
+
+
 canvas.onmousedown = mouseDown;
 canvas.onmouseup = mouseUp;
 canvas.onmousemove = mouseMove;
 
-let btn = Button(50, 50, btn1, btn2, btn3, callback);
 let aniManager = AnimationManager(ctx);
-
-function callback() {
-    alert("你点了劳资！");
-}
 
 function mainLoop() {
     //逻辑更新
     aniManager.logic();
     //视图更新
-    drawFillRect(ctx, "#f6f6f6", 0, 0, 800, 600);
-    // drawSrcImg(ctx,img,0,0);
-    // drawImg(ctx,img,0,0,100,100,0,0,img.width,img.height);
-    // drawLine(ctx,"#6666",0,0,500,500);
-    // drawFillRect(ctx,"green",10,10,200,200);
-    // drawText(ctx, "green", 60, "仙路尽头谁为峰，一见无始道成空！", 10, 200);
-    // drawRectText(ctx, "blue", 30, "仙路尽头谁为峰，一见无始道成空！", 10, 300, 300);
-    drawOutlineText(ctx, "yellow", "red", 30, "狡猾的球球", 10, 250);
+    drawFillRect(ctx, "#f6f6f6", 0, 0, 640, 480);
+    drawSrcImg(ctx, video, 0, 0);
     aniManager.draw();
-    btn.draw(ctx);
+    drawSrcImg(ctx, login, 0, 0);
+    btnNewGame.draw(ctx);
+    btnOldGame.draw(ctx);
+    btnExitGame.draw(ctx);
 }
 
 function mouseMove() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-    // aniManager.add(mx, my, effect, 3000, false);
-    btn.getFocus(mx, my);
+    btnNewGame.mouseMove(mx, my);
+    btnOldGame.mouseMove(mx, my);
+    btnExitGame.mouseMove(mx, my);
 }
 
 function mouseDown() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
     aniManager.add(mx, my, effect, 2000, false);
-    btn.mouseDown(mx, my);
+    btnNewGame.mouseDown(mx, my);
+    btnOldGame.mouseDown(mx, my);
+    btnExitGame.mouseDown(mx, my);
 }
 
 function mouseUp() {
     let mx = parseInt(event.clientX - canvas.getBoundingClientRect().left);
     let my = parseInt(event.clientY - canvas.getBoundingClientRect().top);
-    btn.mouseUp(mx, my);
+    btnNewGame.mouseUp(mx, my);
+    btnOldGame.mouseUp(mx, my);
+    btnExitGame.mouseUp(mx, my);
 }
