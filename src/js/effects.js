@@ -8,20 +8,19 @@
     参数：
         x,y：绘制动画的中心点（不是左上角啦）
         img：序列帧图片（只支持一行的序列帧）
-        frame：动画一共多少帧
         time：动画时长
         loop：循环动画（是否为循环动画）
 */
 function Animation(x, y, img, time, loop) {
-    var frame = img.width / img.height;
-    var dw = img.width / frame;     //单位宽度
-    var dh = img.height;            //单位高度
+    var frame = img.width / img.height; //动画一共多少帧
+    var dw = img.width / frame;         //单位宽度
+    var dh = img.height;                //单位高度
     var speed = parseInt(time / frame); //每帧播放速度（单位毫秒）
     return {
         x: x - dw / 2,      //绘图坐标
         y: y - dh / 2,
         dw: dw,
-        dy: dh,
+        dh: dh,
         img: img,
         frame: frame,        //最大帧数
         frameCount: speed < 32 ? 1 : parseInt(speed / 32),      //需要等待几次主循环才切换1帧
@@ -43,7 +42,7 @@ function Animation(x, y, img, time, loop) {
 
         //绘制动画
         draw: function (ctx) {
-            drawCellImg(ctx, img, this.x, this.y, this.currentFrame, 0, this.dw, this.dy);
+            drawCellImg(ctx, img, this.x, this.y, this.currentFrame, 0, this.dw, this.dh);
         }
     }
 }

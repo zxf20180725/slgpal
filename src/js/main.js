@@ -23,6 +23,7 @@ canvas.onmousemove = mouseMove;
 
 let aniManager = AnimationManager(ctx);
 
+
 function mainLoop() {
     //逻辑更新
     aniManager.logic();
