@@ -2,6 +2,8 @@ canvas.onmousedown = mouseDown;
 canvas.onmouseup = mouseUp;
 canvas.onmousemove = mouseMove;
 let timer = setInterval(mainLoop, 32);      //60FPS
+let talkManager = TalkManager(ctx);
+talkManager.start(0);
 
 function mainLoop() {
     //全局的逻辑
@@ -10,6 +12,7 @@ function mainLoop() {
         case 0:
             startLogic();
             startDraw();
+            talkManager.draw();
             break;
     }
     //全局的绘图
@@ -32,6 +35,7 @@ function mouseDown() {
     switch (scene) {
         case 0:
             startMouseDown(mx, my);
+            talkManager.mouseDown();
             break;
     }
 }

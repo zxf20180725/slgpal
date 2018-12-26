@@ -122,10 +122,9 @@ function drawOutlineText(ctx, colorOut, colorIn, size, text, destX, destY) {
         maxW：最大宽度，超过后会自动换行
  */
 function drawRectText(ctx, color, size, text, destX, destY, maxW) {
-    //计算
     let lineWidth = 0;
     let lastSubStrIndex = 0;
-    let lineHeight = size;
+    let lineHeight = size+3;
     ctx.font = size + "px 微软雅黑";
     ctx.fillStyle = color;
     for (let i = 0; i < text.length; i++) {

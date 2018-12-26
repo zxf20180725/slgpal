@@ -6,25 +6,26 @@
 */
 let talk_script = [
     {
-        talk_id: 0, script: [
+        talk_id: 0,
+        script: [
             {
                 name: "狡猾的球球",
-                text: "欢迎试玩仙剑奇侠传二战棋版，如果您有什么建议或bug反馈请联系QQ：871245007。谢谢您的支持",
-                face: 1,
+                text: "欢迎试玩仙剑奇侠传二战棋版，如果您有什么建议或bug反馈请联系QQ：871245007。谢谢您的支持~",
+                face: 0,
                 pos: 0,
                 event: -1
             },
             {
                 name: "丁声东",
                 text: "我是傻逼！我是傻逼！我是傻逼！",
-                face: 2,
+                face: 1,
                 pos: 1,
                 event: -1
             },
             {
                 name: "狡猾的球球",
                 text: "我知道你是傻逼，快滚！",
-                face: 1,
+                face: 0,
                 pos: 0,
                 event: -1
             }
