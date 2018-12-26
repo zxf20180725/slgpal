@@ -1,6 +1,8 @@
 /*
     gui模块
  */
+
+//按钮
 function Button(x, y, imgNormal, imgMove, imgDown, callback) {
     return {
         x: x,

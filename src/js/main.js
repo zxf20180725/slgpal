@@ -4,14 +4,16 @@ canvas.onmousemove = mouseMove;
 let timer = setInterval(mainLoop, 32);      //60FPS
 
 function mainLoop() {
+    //全局的逻辑
+    fadeManager.logic();
     switch (scene) {
         case 0:
-            fadeManager.logic();
             startLogic();
             startDraw();
-            fadeManager.draw();
             break;
     }
+    //全局的绘图
+    fadeManager.draw();
 }
 
 function mouseMove() {
