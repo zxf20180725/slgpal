@@ -6,8 +6,10 @@ let timer = setInterval(mainLoop, 32);      //60FPS
 function mainLoop() {
     switch (scene) {
         case 0:
+            fadeManager.logic();
             startLogic();
             startDraw();
+            fadeManager.draw();
             break;
     }
 }

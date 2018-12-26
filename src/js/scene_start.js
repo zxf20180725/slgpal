@@ -1,5 +1,4 @@
 //开始界面场景的业务逻辑
-
 let startBtn1 = NewImage("./image/btn1.png", 186, 34);
 let startBtn2 = NewImage("./image/btn2.png", 186, 34);
 let startBtn3 = NewImage("./image/btn3.png", 186, 34);
@@ -9,7 +8,7 @@ let startBtn6 = NewImage("./image/btn6.png", 186, 34);
 let startLogin = NewImage("./image/login.png", 640, 480);
 let startEffect = NewImage("./image/effect1.png", 2880, 96);
 
-let startBtnNewGame = Button(230, 270, startBtn1, startBtn2, startBtn2);
+let startBtnNewGame = Button(230, 270, startBtn1, startBtn2, startBtn2,startNewGame);
 let startBtnOldGame = Button(230, 320, startBtn3, startBtn4, startBtn4);
 let startBtnExitGame = Button(230, 370, startBtn5, startBtn6, startBtn6);
 
@@ -44,4 +43,8 @@ function startMouseUp(mx, my) {
     startBtnNewGame.mouseUp(mx, my);
     startBtnOldGame.mouseUp(mx, my);
     startBtnExitGame.mouseUp(mx, my);
+}
+
+function startNewGame() {
+    fadeManager.reset()
 }

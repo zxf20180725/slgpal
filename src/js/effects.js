@@ -89,3 +89,54 @@ function AnimationManager(ctx) {
         }
     }
 }
+
+
+/*
+    功能：
+        游戏淡入淡出管理
+ */
+function FadeManager(ctx,callback){
+    return {
+        ctx:ctx,
+        sw:false,           //开关
+        callback:callback,  //回调函数
+        state:0,            //当前状态
+        speed:10,           //alpha变化速度
+        alpha:0,            //不透明度[0,255]
+
+        logic:function(){
+            if (!this.sw)
+                return;
+
+            if(this.state===0) {  //第一阶段，淡出
+                this.alpha += this.speed;
+                if (this.alpha >= 255) {
+                    this.alpha = 255;
+                    this.state = 1;
+                    if (this.callback)
+                        this.callback();
+                }
+            }else{  //第二阶段，淡入
+                this.alpha-=this.speed;
+                if(this.alpha<=0)
+                    this.sw=false;
+            }
+        },
+
+        draw:function(){
+            if(!this.sw)
+                return;
+            drawFillRect(this.ctx,"rgba(0,0,0,"+String(this.alpha/255)+")",0,0,640,480);
+        },
+
+        reset:function(callback){
+            if(this.sw)
+                return;
+            this.sw=true;
+            this.callback=callback;
+            this.state=0;
+            this.speed=10;
+            this.alpha=0;
+        }
+    }
+}
