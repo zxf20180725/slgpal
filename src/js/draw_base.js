@@ -89,6 +89,7 @@ function drawCellImg(ctx, img, destX, destY, cellX, cellY, dW, dH) {
 function drawText(ctx, color, size, text, destX, destY) {
     ctx.font = size + "px 微软雅黑";
     ctx.fillStyle = color;
+    destY+=size;   //坐标是文字的左下角，所以得转换成左上角
     ctx.fillText(text, destX, destY);
     // ctx.strokeText(text, destX, destY);
 }
@@ -113,7 +114,7 @@ function drawOutlineText(ctx, colorOut, colorIn, size, text, destX, destY) {
 
 /*
     功能：
-        绘制自动换行的文字
+        绘制自动换行的文字,支持\n换行
     参数：
         color：颜色字符串
         size：字体大小
@@ -122,18 +123,22 @@ function drawOutlineText(ctx, colorOut, colorIn, size, text, destX, destY) {
         maxW：最大宽度，超过后会自动换行
  */
 function drawRectText(ctx, color, size, text, destX, destY, maxW) {
-    let lineWidth = 0;
+    let lineWidth = 0;          //每一行的宽度
     let lastSubStrIndex = 0;
-    let lineHeight = size+3;
+    let lineHeight = size + 3;    //行高
     ctx.font = size + "px 微软雅黑";
     ctx.fillStyle = color;
+    destY+=size;   //坐标是文字的左下角，所以得转换成左上角
     for (let i = 0; i < text.length; i++) {
         lineWidth += ctx.measureText(text[i]).width;
-        if (lineWidth > maxW - destX) {//减去initX,防止边界出现的问题
+        if (lineWidth > maxW || text[i] === '\n') {
             ctx.fillText(text.substring(lastSubStrIndex, i), destX, destY);
             destY += lineHeight;
             lineWidth = 0;
-            lastSubStrIndex = i;
+            if (text[i] === '\n')
+                lastSubStrIndex = i + 1;
+            else
+                lastSubStrIndex = i;
         }
         if (i === text.length - 1) {
             ctx.fillText(text.substring(lastSubStrIndex, i + 1), destX, destY);

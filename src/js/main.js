@@ -12,10 +12,10 @@ function mainLoop() {
         case 0:
             startLogic();
             startDraw();
-            talkManager.draw();
             break;
     }
     //全局的绘图
+    talkManager.draw();
     fadeManager.draw();
 }
 

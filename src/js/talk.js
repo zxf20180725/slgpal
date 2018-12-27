@@ -63,12 +63,12 @@ function TalkManager(ctx) {
             //画对话框
             drawFillRect(this.ctx, "rgba(0,0,0,0.8)", this.boxX, this.boxY, this.boxWidth, this.boxHeight);
             //画名字
-            drawText(this.ctx, "rgb(255,255,255)", 17, this.talkScript[this.talkCount].name + ":", this.boxX + 10, this.boxY + 20);
+            drawText(this.ctx, "rgb(255,255,255)", 17, this.talkScript[this.talkCount].name + ":", this.boxX + 10, this.boxY + 5);
             //画文字
-            drawRectText(this.ctx, "rgb(255,255,255)", 16, this.talkScript[this.talkCount].text, this.boxX + 10, this.boxY + 50, 400);
+            drawRectText(this.ctx, "rgb(255,255,255)", 16, this.talkScript[this.talkCount].text, this.boxX + 10, this.boxY + 30, this.boxWidth - 20);
         },
 
-        mouseDown:function(){
+        mouseDown: function () {
             this.talk();
         }
     }
