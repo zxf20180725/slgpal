@@ -16,18 +16,18 @@ let talk_script = [
                 event: -1
             },
             {
-                name: "丁声东",
+                name: "傻逼",
                 text: "我是傻逼！我是傻逼！我是傻逼！",
                 face: 1,
                 pos: 1,
-                event: -1
+                event: 1
             },
             {
                 name: "狡猾的球球",
                 text: "我知道你是傻逼，快滚！",
                 face: 0,
                 pos: 0,
-                event: -1
+                event: 2
             }
         ]
     }

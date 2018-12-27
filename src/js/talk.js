@@ -23,7 +23,7 @@ function TalkManager(ctx) {
             this.getCurrentInfo();
         },
 
-        //获取当前对话框的一些信息
+        //获取当前对话框的位置信息
         getCurrentInfo: function () {
             //当前对话对象
             var currentTalk = this.talkScript[this.talkCount];
@@ -46,6 +46,9 @@ function TalkManager(ctx) {
                 return;
             if (this.talkCount !== 0) {
                 //TODO:调用事件回调函数
+                event_id=this.talkScript[this.talkCount].event;
+                if(event_id!==-1)
+                    event_list[event_id]();
             }
             this.talkCount++;
             if (this.talkCount >= this.talkScript.length) {
