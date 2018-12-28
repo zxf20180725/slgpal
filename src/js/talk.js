@@ -16,7 +16,7 @@ let event_list = [talk_0,];
 
 /*
     face：对话头像
-    pos：对话框弹出位置 0左边 1右边 -1直接出现
+    pos：头像位置 0左边 1右边
     event：事件编号，即对话完成后的回调函数编号 -1没有事件
 */
 let talk_script = [
@@ -35,14 +35,14 @@ let talk_script = [
                 text: "我是傻逼！我是傻逼！我是傻逼！",
                 face: 1,
                 pos: 1,
-                event: 1
+                event: -1
             },
             {
                 name: "狡猾的球球",
                 text: "我知道你是傻逼，快滚！",
                 face: 0,
                 pos: 0,
-                event: 2
+                event: -1
             }
         ]
     },
@@ -162,6 +162,20 @@ let talk_script = [
             {
                 name: "王小虎心想",
                 text: "（这半年来，盛师父只叫我打杂、清扫、再不然就是打坐、马步、吐纳什么的···）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（这些基础武功，我已跟着李大娘学了好多年了···）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（真不知道师父什么时候才愿意传授我真正的刀法···）",
                 face: 0,
                 pos: 0,
                 event: -1
