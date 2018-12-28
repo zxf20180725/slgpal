@@ -11,8 +11,8 @@
         time：动画时长
         loop：循环动画（是否为循环动画）
 */
-function Animation(x, y, img, time, loop) {
-    var frame = img.width / img.height; //动画一共多少帧
+function Animation(x, y, img, time, loop, frameNum) {
+    var frame = frameNum || img.width / img.height; //动画一共多少帧
     var dw = img.width / frame;         //单位宽度
     var dh = img.height;                //单位高度
     var speed = parseInt(time / frame); //每帧播放速度（单位毫秒）
@@ -33,7 +33,7 @@ function Animation(x, y, img, time, loop) {
         logic: function () {
             this.currentCount++;
             this.currentFrame = parseInt(this.currentCount / this.frameCount);
-            if (this.currentFrame > this.frame) {
+            if (this.currentFrame >= this.frame) {
                 this.currentFrame = 0;
                 this.currentCount = 0;
                 this.leastOnce = true;
@@ -78,8 +78,8 @@ function AnimationManager(ctx) {
         },
 
         //添加动画
-        add: function (x, y, img, frame, speed, loop) {
-            var animation = Animation(x, y, img, frame, speed, loop);
+        add: function (x, y, img, frame, speed, loop, frameNum) {
+            var animation = Animation(x, y, img, frame, speed, loop, frameNum);
             this.animations.push(animation);
         },
 
@@ -95,20 +95,20 @@ function AnimationManager(ctx) {
     功能：
         游戏淡入淡出管理
  */
-function FadeManager(ctx,callback){
+function FadeManager(ctx, callback) {
     return {
-        ctx:ctx,
-        sw:false,           //开关
-        callback:callback,  //回调函数
-        state:0,            //当前状态
-        speed:10,           //alpha变化速度
-        alpha:0,            //不透明度[0,255]
+        ctx: ctx,
+        sw: false,           //开关
+        callback: callback,  //回调函数
+        state: 0,            //当前状态
+        speed: 10,           //alpha变化速度
+        alpha: 0,            //不透明度[0,255]
 
-        logic:function(){
+        logic: function () {
             if (!this.sw)
                 return;
 
-            if(this.state===0) {  //第一阶段，淡出
+            if (this.state === 0) {  //第一阶段，淡出
                 this.alpha += this.speed;
                 if (this.alpha >= 255) {
                     this.alpha = 255;
@@ -116,27 +116,27 @@ function FadeManager(ctx,callback){
                     if (this.callback)
                         this.callback();
                 }
-            }else{  //第二阶段，淡入
-                this.alpha-=this.speed;
-                if(this.alpha<=0)
-                    this.sw=false;
+            } else {  //第二阶段，淡入
+                this.alpha -= this.speed;
+                if (this.alpha <= 0)
+                    this.sw = false;
             }
         },
 
-        draw:function(){
-            if(!this.sw)
+        draw: function () {
+            if (!this.sw)
                 return;
-            drawFillRect(this.ctx,"rgba(0,0,0,"+String(this.alpha/255)+")",0,0,640,480);
+            drawFillRect(this.ctx, "rgba(0,0,0," + String(this.alpha / 255) + ")", 0, 0, 640, 480);
         },
 
-        reset:function(callback){
-            if(this.sw)
+        reset: function (callback) {
+            if (this.sw)
                 return;
-            this.sw=true;
-            this.callback=callback;
-            this.state=0;
-            this.speed=10;
-            this.alpha=0;
+            this.sw = true;
+            this.callback = callback;
+            this.state = 0;
+            this.speed = 10;
+            this.alpha = 0;
         }
     }
 }

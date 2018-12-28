@@ -3,9 +3,15 @@ canvas.onmouseup = mouseUp;
 canvas.onmousemove = mouseMove;
 let timer = setInterval(mainLoop, 32);      //60FPS
 
+function storyChangeScene(scene) {
+    storyScene = scene;
+    sceneImg = NewImage('./image/all_scene/' + storyScene + '.jpg', 640, 480);
+}
+
 function mainLoop() {
     //全局的逻辑
     fadeManager.logic();
+    aniManager.logic();
     switch (scene) {
         case 0:
             startLogic();

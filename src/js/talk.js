@@ -1,19 +1,18 @@
 //对话管理
 
 //*************************************对话事件*************************************
-function event_test() {
-    alert('事件测试1');
+function talk_0() {
+    //盛尊武叫小虎回去
+    fadeManager.reset(function () {
+        storyChangeScene(1);
+        aniManager.clear();
+        // talkManager.storyMgr.promote();
+        talkManager.start(2);
+    });
 }
 
-function event_test2() {
-    fadeManager.reset();
-}
 
-function event_test3() {
-    fadeManager.reset();
-}
-
-let event_list = [event_test, event_test2, event_test3];
+let event_list = [talk_0,];
 
 /*
     face：对话头像
@@ -46,7 +45,129 @@ let talk_script = [
                 event: 2
             }
         ]
-    }
+    },
+    {
+        talk_id: 1,
+        script: [
+            {
+                name: "仙剑奇侠传二",
+                text: "    欢迎试玩仙剑奇侠传二战棋版，如果您有什么建议或bug反馈请联系QQ：871245007。\n    谢谢您的支持~",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "仙剑奇侠传二",
+                text: "    杭州城\n          ----王小虎14岁。",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "仙剑奇侠传二",
+                text: "      蜀山峰，入云霄\n      掌门逍遥人品高\n      平妖卫道不辞苦\n      江湖奇人大英豪",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "小孩",
+                text: "小虎哥，小虎哥，再告诉我们一些逍遥大侠的故事嘛！",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "仙剑奇侠传二",
+                text: "屋内传来师父的声音...",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "盛尊武",
+                text: "小虎，进来一下！",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎",
+                text: "哎呀~",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎",
+                text: "不行不行，师父有事找我了！",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎",
+                text: "赶明儿再给你们说故事听。",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "小孩",
+                text: "好，小虎哥！你答应明天跟我们说逍遥大侠的故事喔~",
+                face: -1,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎",
+                text: "好啊~你们快回家吧！",
+                face: 0,
+                pos: 0,
+                event: 0
+            },
+        ]
+    },
+    {
+        talk_id: 2,
+        script: [
+            {
+                name: "王小虎",
+                text: "师父不知什么事在叫唤我，我得赶紧过去看看。",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（师父都说不再理江湖中事，他还这么跪了两天两夜······）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（不知道什么缘故，让这位大哥哥这样子坚持···）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（不过说起来，自从皇甫叔在我来到杭州，拜入盛师父门下···）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "王小虎心想",
+                text: "（这半年来，盛师父只叫我打杂、清扫、再不然就是打坐、马步、吐纳什么的···）",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+        ]
+    },
 ];
 
 function TalkManager(ctx) {
@@ -77,8 +198,8 @@ function TalkManager(ctx) {
         getCurrentInfo: function () {
             //当前对话对象
             var currentTalk = this.talkScript[this.talkCount];
-            var faceW = faceImages[currentTalk.face].width;
-            var faceH = faceImages[currentTalk.face].height;
+            var faceW = currentTalk.face !== -1 ? faceImages[currentTalk.face].width : 200;
+            var faceH = currentTalk.face !== -1 ? faceImages[currentTalk.face].height : 250;
             this.faceY = 480 - faceH;
             this.boxY = 480 - this.boxHeight;
             if (currentTalk.pos === 0) {        //头像在左边

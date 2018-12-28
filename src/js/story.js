@@ -2,7 +2,7 @@
 
 //新的游戏
 function story_0_start_game() {
-    talkManager.start(0);
+    talkManager.start(1);
 }
 
 let story_events = [

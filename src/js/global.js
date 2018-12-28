@@ -8,6 +8,7 @@ let storyScene = 0;    //剧情模式中的场景编号（背景图片编号）
 let aniManager = AnimationManager(ctx);     //动画管理器
 let fadeManager = FadeManager(ctx);         //淡入淡出管理器
 
+
 let faceImages = [];      //所有头像图片
 faceImages.push(NewImage("./image/all_face/27-1.png", 200, 250));      //0 少年王小虎
 faceImages.push(NewImage("./image/all_face/13-1.png", 200, 250));      //1 少年喻南松

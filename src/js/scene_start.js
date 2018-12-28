@@ -14,7 +14,6 @@ let startBtnExitGame = Button(230, 370, startBtn5, startBtn6, startBtn6);
 
 
 function startLogic() {
-    aniManager.logic();
 }
 
 function startDraw() {
@@ -48,6 +47,9 @@ function startMouseUp(mx, my) {
 function startNewGame() {
     fadeManager.reset(function () {
         scene = 1;
+        storyManager.promote();
+        aniManager.clear();
+        aniManager.add(400,250,NewImage('./image/all_ani/1.png',128,72),1000,true,2);
     });
 }
 
