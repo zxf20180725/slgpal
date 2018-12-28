@@ -46,7 +46,9 @@ function startMouseUp(mx, my) {
 }
 
 function startNewGame() {
-    fadeManager.reset()
+    fadeManager.reset(function () {
+        scene = 1;
+    });
 }
 
 function startOldGame() {

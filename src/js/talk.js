@@ -51,7 +51,7 @@ let talk_script = [
 
 function TalkManager(ctx) {
     return {
-        storyMgr:null,
+        storyMgr: null,
         ctx: ctx,
         sw: false,              //是否正在对话
         talkId: -1,             //当前对话id
@@ -95,11 +95,11 @@ function TalkManager(ctx) {
             if (!this.sw)
                 return;
             if (this.talkCount !== 0) {
-                //TODO:调用事件回调函数
-                event_id=this.talkScript[this.talkCount].event;
-                if(event_id!==-1) {
-                    var ret =event_list[event_id]();
-                    if(ret) //如果返回true，就代表要推动剧情发展
+                //调用事件回调函数
+                event_id = this.talkScript[this.talkCount].event;
+                if (event_id !== -1) {
+                    var ret = event_list[event_id]();
+                    if (ret) //如果返回true，就代表要推动剧情发展
                         this.storyMgr.promote();
                 }
             }
@@ -115,11 +115,12 @@ function TalkManager(ctx) {
             if (!this.sw)
                 return;
             //画头像
-            drawSrcImg(this.ctx, faceImages[this.talkScript[this.talkCount].face], this.faceX, this.faceY);
+            if (this.talkScript[this.talkCount].face !== -1)
+                drawSrcImg(this.ctx, faceImages[this.talkScript[this.talkCount].face], this.faceX, this.faceY);
             //画对话框
             drawFillRect(this.ctx, "rgba(0,0,0,0.8)", this.boxX, this.boxY, this.boxWidth, this.boxHeight);
             //画名字
-            drawText(this.ctx, "rgb(255,255,255)", 17, this.talkScript[this.talkCount].name + ":", this.boxX + 10, this.boxY + 5);
+            drawOutlineText(this.ctx, "rgb(255,127,39)", "rgb(255,255,255)", 16, this.talkScript[this.talkCount].name + ":", this.boxX + 10, this.boxY + 5);
             //画文字
             drawRectText(this.ctx, "rgb(255,255,255)", 16, this.talkScript[this.talkCount].text, this.boxX + 10, this.boxY + 30, this.boxWidth - 20);
         },
@@ -129,4 +130,5 @@ function TalkManager(ctx) {
         }
     }
 }
+
 let talkManager = TalkManager(ctx);

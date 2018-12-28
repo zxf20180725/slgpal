@@ -14,8 +14,10 @@ function StoryManager() {
         mainLineId: -1,
         //推动剧情发展
         promote: function () {
-            this.mainLineId++;
-            story_events[this.mainLineId]();
+            if (this.mainLineId + 1 < story_events.length) {
+                this.mainLineId++;
+                story_events[this.mainLineId]()
+            }
         }
     }
 }
