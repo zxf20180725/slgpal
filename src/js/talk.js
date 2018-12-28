@@ -1,7 +1,57 @@
 //对话管理
 
+//*************************************对话事件*************************************
+function event_test() {
+    alert('事件测试1');
+}
+
+function event_test2() {
+    fadeManager.reset();
+}
+
+function event_test3() {
+    fadeManager.reset();
+}
+
+let event_list = [event_test, event_test2, event_test3];
+
+/*
+    face：对话头像
+    pos：对话框弹出位置 0左边 1右边 -1直接出现
+    event：事件编号，即对话完成后的回调函数编号 -1没有事件
+*/
+let talk_script = [
+    {
+        talk_id: 0,
+        script: [
+            {
+                name: "狡猾的球球",
+                text: "    欢迎试玩仙剑奇侠传二战棋版，如果您有什么建议或bug反馈请联系QQ：871245007。\n    谢谢您的支持~",
+                face: 0,
+                pos: 0,
+                event: -1
+            },
+            {
+                name: "傻逼",
+                text: "我是傻逼！我是傻逼！我是傻逼！",
+                face: 1,
+                pos: 1,
+                event: 1
+            },
+            {
+                name: "狡猾的球球",
+                text: "我知道你是傻逼，快滚！",
+                face: 0,
+                pos: 0,
+                event: 2
+            }
+        ]
+    }
+];
+
 function TalkManager(ctx) {
     return {
+        storyMgr:null,
         ctx: ctx,
         sw: false,              //是否正在对话
         talkId: -1,             //当前对话id
@@ -47,8 +97,11 @@ function TalkManager(ctx) {
             if (this.talkCount !== 0) {
                 //TODO:调用事件回调函数
                 event_id=this.talkScript[this.talkCount].event;
-                if(event_id!==-1)
-                    event_list[event_id]();
+                if(event_id!==-1) {
+                    var ret =event_list[event_id]();
+                    if(ret) //如果返回true，就代表要推动剧情发展
+                        this.storyMgr.promote();
+                }
             }
             this.talkCount++;
             if (this.talkCount >= this.talkScript.length) {
@@ -76,3 +129,4 @@ function TalkManager(ctx) {
         }
     }
 }
+let talkManager = TalkManager(ctx);
