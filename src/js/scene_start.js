@@ -47,9 +47,7 @@ function startMouseUp(mx, my) {
 function startNewGame() {
     fadeManager.reset(function () {
         scene = 1;
-        storyManager.promote();
-        aniManager.clear();
-        aniManager.add(400,250,NewImage('./image/all_ani/1.png',128,72),1000,true,2);
+        storyManager.promote(); // 0
     });
 }
 

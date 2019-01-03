@@ -3,6 +3,9 @@
 //新的游戏
 function story_0_start_game() {
     talkManager.start(1);       //新的游戏，开始1号对话
+    aniManager.clear();
+    aniManager.add(400, 250, aniImages[0], 1000, true, 2);       //加入小孩动画
+    aniManager.add(420, 220, aniImages[1], 1000, true, 1);      //加入小虎单帧图片
 }
 
 //剧情事件列表

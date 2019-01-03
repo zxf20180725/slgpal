@@ -10,8 +10,10 @@
         img：序列帧图片（只支持一行的序列帧）
         time：动画时长
         loop：循环动画（是否为循环动画）
+        frameCallback：帧回调（回调函数必须提供一个frame参数，传入当前帧）
+        doneCallback：播放完成回调（当动画播放结束触发）
 */
-function Animation(x, y, img, time, loop, frameNum) {
+function Animation(x, y, img, time, loop, frameNum, frameCallback, doneCallback) {
     var frame = frameNum || img.width / img.height; //动画一共多少帧
     var dw = img.width / frame;         //单位宽度
     var dh = img.height;                //单位高度
@@ -28,15 +30,25 @@ function Animation(x, y, img, time, loop, frameNum) {
         currentFrame: 0,       //当前帧
         loop: loop,              //是否循环播放
         leastOnce: false,       //动画是否至少播放了一次
-
+        frameCallback: frameCallback,        //帧回调
+        doneCallback: doneCallback,          //播放完成回调
         //放在游戏主循环里调用
         logic: function () {
+            var lastFrame = this.currentFrame;        //上一帧
             this.currentCount++;
             this.currentFrame = parseInt(this.currentCount / this.frameCount);
-            if (this.currentFrame >= this.frame) {
+            if (this.currentFrame >= this.frame) {      //播放完成
                 this.currentFrame = 0;
                 this.currentCount = 0;
                 this.leastOnce = true;
+                if (this.frameCallback)
+                    this.frameCallback(lastFrame);
+
+                if (this.doneCallback)
+                    this.doneCallback(lastFrame);
+            } else {      //播放中
+                if (lastFrame !== this.currentFrame && this.frameCallback)      //每个动画帧回调，而不是每个主循环回调
+                    this.frameCallback(lastFrame);
             }
         },
 
@@ -78,8 +90,8 @@ function AnimationManager(ctx) {
         },
 
         //添加动画
-        add: function (x, y, img, frame, speed, loop, frameNum) {
-            var animation = Animation(x, y, img, frame, speed, loop, frameNum);
+        add: function (x, y, img, frame, speed, loop, frameNum, frameCallback, doneCallback) {
+            var animation = Animation(x, y, img, frame, speed, loop, frameNum, frameCallback, doneCallback);
             this.animations.push(animation);
         },
 

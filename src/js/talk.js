@@ -6,7 +6,6 @@ function talk_0() {
     fadeManager.reset(function () {
         storyChangeScene(1);
         aniManager.clear();
-        // talkManager.storyMgr.promote();
         talkManager.start(2);
     });
 }
@@ -186,7 +185,7 @@ let talk_script = [
 
 function TalkManager(ctx) {
     return {
-        storyMgr: null,
+        storyMgr: null,         //剧情管理器
         ctx: ctx,
         sw: false,              //是否正在对话
         talkId: -1,             //当前对话id
