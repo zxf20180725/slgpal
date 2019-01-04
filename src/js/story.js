@@ -2,6 +2,7 @@
 
 //新的游戏
 function story_0_start_game() {
+    scene = 1;
     talkManager.start(1);       //新的游戏，开始1号对话
     aniManager.clear();
     aniManager.add(400, 250, aniImages[0], 1000, true, 2);       //加入小孩动画
@@ -17,11 +18,14 @@ function StoryManager() {
     return {
         mainLineId: -1,
         //推动剧情发展
-        promote: function () {
-            if (this.mainLineId + 1 < story_events.length) {    //保证还有剧情，否则会下标越界
-                this.mainLineId++;
+        promote: function (mainLineId) {
+            // if (this.mainLineId + 1 < story_events.length) {    //保证还有剧情，否则会下标越界
+            //     this.mainLineId++;
+            //     story_events[this.mainLineId]();
+            // }
+            this.mainLineId = mainLineId;
+            if (this.mainLineId < story_events.length)
                 story_events[this.mainLineId]();
-            }
         }
     }
 }

@@ -46,11 +46,10 @@ function startMouseUp(mx, my) {
 
 function startNewGame() {
     fadeManager.reset(function () {
-        scene = 1;
-        storyManager.promote(); // 0
+        storyManager.promote(0); // 新游戏
     });
 }
 
 function startOldGame() {
-    storyManager.promote();
+    storyManager.promote(0);
 }

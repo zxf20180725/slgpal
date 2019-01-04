@@ -7,6 +7,7 @@ function talk_0() {
         storyChangeScene(1);
         aniManager.clear();
         talkManager.start(2);
+        aniManager.add(250, 250, aniImages[2], 4000, true, 29);
     });
 }
 
@@ -233,8 +234,8 @@ function TalkManager(ctx) {
                 event_id = this.talkScript[this.talkCount].event;
                 if (event_id !== -1) {
                     var ret = event_list[event_id]();
-                    if (ret) //如果返回true，就代表要推动剧情发展
-                        this.storyMgr.promote();
+                    if (ret !== null) //如果有返回值，就代表要推动剧情发展
+                        this.storyMgr.promote(ret);
                 }
             }
             this.talkCount++;

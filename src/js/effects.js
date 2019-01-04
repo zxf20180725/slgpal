@@ -90,8 +90,8 @@ function AnimationManager(ctx) {
         },
 
         //添加动画
-        add: function (x, y, img, frame, speed, loop, frameNum, frameCallback, doneCallback) {
-            var animation = Animation(x, y, img, frame, speed, loop, frameNum, frameCallback, doneCallback);
+        add: function (x, y, img, speed, loop, frameNum, frameCallback, doneCallback) {
+            var animation = Animation(x, y, img, speed, loop, frameNum, frameCallback, doneCallback);
             this.animations.push(animation);
         },
 
