@@ -1,4 +1,9 @@
 //游戏剧情管理
+/*
+    剧情编号mainLineId说明：
+
+    0：开始新的游戏，场景变为故事场景，开始1号对话
+ */
 
 //新的游戏
 function story_0_start_game() {

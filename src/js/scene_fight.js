@@ -20,3 +20,7 @@ function fightMouseDown(mx, my) {
 function fightMouseUp(mx, my) {
 
 }
+
+function FightManager(fightId) {
+    var mapTop
+}
