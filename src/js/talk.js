@@ -10,9 +10,15 @@ function talk_0() {
         aniManager.add(250, 250, aniImages[2], 4000, true, 29);
     });
 }
+function talk_1() {
+    //进入战斗
+    fadeManager.reset(function () {
+        fightManager.enter(0);
+        scene=2;
+    });
+}
 
-
-let event_list = [talk_0,];
+let event_list = [talk_0,talk_1];
 
 /*
     face：对话头像
@@ -178,7 +184,7 @@ let talk_script = [
                 text: "（真不知道师父什么时候才愿意传授我真正的刀法···）",
                 face: 0,
                 pos: 0,
-                event: -1
+                event: 1
             },
         ]
     },

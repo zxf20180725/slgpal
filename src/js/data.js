@@ -51,16 +51,30 @@ let fight_data = [
         id: 0,
         fightScene: 0,
         boss: [
-            {id: 0, x: 0, y: 0}
+            {id: 0, x: 0, y: 0}     //查协
         ],
         enemy: [
-            {id: 0, x: 1, y: 1},
-            {id: 0, x: 10, y: 10}
+            {id: 0, x: 1, y: 1},    //持棍强盗
+            {id: 0, x: 10, y: 10}   //持棍强盗
         ],
         startCb: null,          //战斗开始时的回调
         winCb: null,            //战斗胜利的回调
         loseCb: null,           //战斗失败的回调
-        OurRoundStartCb: null,       //我方回合开始时回调
-        EnemyRoundStartCb: null,     //敌方回合开始时回调
+        ourRoundStartCb: null,       //我方回合开始时回调
+        enemyRoundStartCb: null,     //敌方回合开始时回调
     },     //boss战，査协
 ];
+
+//同步get请求
+function ajax(url) {
+    var xhr = new XMLHttpRequest();
+    var ret="";
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            ret = xhr.responseText;
+        }
+    };
+    xhr.open('get', url, false);
+    xhr.send();
+    return ret;
+}

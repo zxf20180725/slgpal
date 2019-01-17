@@ -21,6 +21,10 @@ function mainLoop() {
             storyLogic();
             storyDraw();
             break;
+        case 2:
+            fightLogic();
+            fightDraw();
+            break;
     }
     //全局的绘图
     talkManager.draw();
@@ -37,6 +41,9 @@ function mouseMove() {
         case 1:
             storyMouseMove(mx, my);
             break;
+        case 2:
+            fightMouseMove(mx, my);
+            break;
     }
 }
 
@@ -51,6 +58,9 @@ function mouseDown() {
         case 1:
             storyMouseDown(mx, my);
             break;
+        case 2:
+            fightMouseDown(mx, my);
+            break;
     }
 }
 
@@ -63,6 +73,9 @@ function mouseUp() {
             break;
         case 1:
             storyMouseUp(mx, my);
+            break;
+        case 2:
+            fightMouseUp(mx, my);
             break;
     }
 }
