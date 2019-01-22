@@ -234,7 +234,7 @@ function TalkManager(ctx) {
         //对话
         talk: function () {
             if (!this.sw)
-                return;
+                return false;
             if (this.talkCount !== 0) {
                 //调用事件回调函数
                 event_id = this.talkScript[this.talkCount].event;
@@ -267,7 +267,7 @@ function TalkManager(ctx) {
         },
 
         mouseDown: function () {
-            this.talk();
+            return this.talk();
         }
     }
 }

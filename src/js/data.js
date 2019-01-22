@@ -10,7 +10,6 @@ let boss_data = [
         atk: 10,     //攻击力
         def: 0,      //防御力
         speed: 5,    //移动力
-        dodge: 1,     //闪避率
         rewards: {      //击败奖励
             baseExp: 50, //基础经验值
             money: 10,    //金钱
@@ -32,7 +31,6 @@ let enemy_data = [
         atk: 5,     //攻击力
         def: 0,      //防御力
         speed: 3,    //移动力
-        dodge: 1,     //闪避率
         rewards: {      //击败奖励
             baseExp: 10, //基础经验值
             money: 1,    //金钱
